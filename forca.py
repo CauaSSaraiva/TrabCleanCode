@@ -74,6 +74,24 @@ bonequinho = [
 """
 ]
 
+def verificacao_acerto(digitado):
+     for i in range(len(sorteada)):
+        acertos = 0
+        if partesUpper[i] == digitado.upper():
+           nova[i] = digitado.upper()
+           acertos += 1
+        if (i + 1) == len(sorteada) and acertos > 0:
+           print("\nEi, você acertou uma(s) letra!\n")
+           return True
+
+def verificacao_erro(digitado):
+    erros = 0
+    for x in range(len(sorteada)):
+        if partesUpper[x] != digitado.upper():
+            erros += 1
+            if erros == len(sorteada):
+                return True
+
 def importar_palavras(txt):
     with open(txt, 'r') as file:
         for linha in file:
