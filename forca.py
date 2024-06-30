@@ -105,6 +105,14 @@ def verificacao_erro(digitado):
             if erros == len(sorteada):
                 return True
 
+#Cauã
+def verificacao_limiteTempo(tempoAtual):
+    if tempoAtual >= limiteTempo:
+        print(f"Tempo esgotado! Você excedeu o limite de {limiteTempo} segundos.")
+        print(f"A palavra era '{sorteada}'.")
+        return True
+
+
 def importar_palavras(txt):
     with open(txt, 'r') as file:
         for linha in file:
@@ -177,36 +185,28 @@ def exibir_classificacao():
         print(f"{usuario['nome']:30s} {usuario['pontos']:<8d} {usuario['tempo']:6.2f}s")
 #Geancarlo
 def jogo(vidas):
-    while True:
-        tempoAtual = time.time() - start
-        bonequinhoAtual = bonequinho[vidas]
-        print(bonequinhoAtual, end='')   
-        print(f"\n{' ' * 12}{'   '.join(nova)}\n") 
-                
-        if vidas <= 0:
-            print("\nVish, suas vidas zeraram e você perdeu o jogo...")
-            grava_pontuacao(vidas, tempoAtual)
-            break
-        if tempoAtual >= limiteTempo:
-            print(f"Tempo esgotado! Você excedeu o limite de {limiteTempo} segundos.")
-            print(f"A palavra era '{sorteada}'.")
-            grava_pontuacao(vidas, tempoAtual)
-            break
-                    
-        digitado = input("Digite uma letra: ")
-        acertos = 0
-        for i in range(len(sorteada)):
-            if partesUpper[i] == digitado.upper():
-                nova[i] = digitado.upper()
-                acertos += 1
-            if acertos > 0:
-                print("\nEi, você acertou uma(s) letra!\n")
-            if partesUpper == nova:
-                print("Você descobriu a palavra! parabéns!\n")
-                print("   ".join(nova))
+        while True:
+            tempoAtual = time.time() - start
+            bonequinhoAtual = bonequinho[vidas]
+            print(bonequinhoAtual, end='')   
+            print(f"\n{' ' * 12}{'   '.join(nova)}\n") 
+
+            if verificacao_vidas(vidas):
                 grava_pontuacao(vidas, tempoAtual)
                 break
-            if acertos == 0:
+            if tempoAtual >= limiteTempo:
+                print(f"Tempo esgotado! Você excedeu o limite de {limiteTempo} segundos.")
+                print(f"A palavra era '{sorteada}'.")
+            if verificacao_limiteTempo(tempoAtual):
+                grava_pontuacao(vidas, tempoAtual)
+                break
+
+            digitado = input("Digite uma letra: ")
+            verificacao_acerto(digitado)
+            if verificacao_vitoria():
+                grava_pontuacao(vidas, tempoAtual)
+                break
+            if verificacao_erro(digitado):
                 vidas -= 1
                 print("\nOps, essa letra não está na palavra")
                 print(f"\nVocê perdeu 1 vida\n Total de vidas: {vidas}")
