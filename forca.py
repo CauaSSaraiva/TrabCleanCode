@@ -103,29 +103,6 @@ def exibir_menu():
     print("3. Sair")
     print("="*60)
 
-def exibir_classificacao():
-    if not registro:
-        print("\nNenhum registro encontrado.")
-        return
-    usuarios = []
-    pontos = []
-    tempos = []
-    for parte in registro:
-        partes = parte.split(";")
-        usuarios.append(partes[0])
-        pontos.append(int(partes[1]))
-        tempos.append(float(partes[2]))
-    merged = list(tuple(zip(usuarios, pontos, tempos)))
-    ordenado = sorted(sorted(merged, key=itemgetter(2)), key=itemgetter(1), reverse=True)
-    usuariosOrdenado, pontosOrdenado, temposOrdenado = zip(*ordenado)
-    print("\nRanking dos usuários")
-    print("-"*40)
-    print("Nome do Usuário............... Pontos... Tempo")
-    print
-    for usuario, tempo, ponto in zip(usuariosOrdenado, temposOrdenado, pontosOrdenado):
-        print(f"{usuario:30s} {ponto:<8d} {tempo:6.2f}s")
-
-
 # Cauã
 def escolherDificuldade():
     print("Escolha De Dificuldade\n")
