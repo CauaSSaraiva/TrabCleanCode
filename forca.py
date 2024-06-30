@@ -125,6 +125,32 @@ def exibir_classificacao():
     for usuario, tempo, ponto in zip(usuariosOrdenado, temposOrdenado, pontosOrdenado):
         print(f"{usuario:30s} {ponto:<8d} {tempo:6.2f}s")
 
+
+# Cauã
+def escolherDificuldade():
+    print("Escolha De Dificuldade\n")
+    print("1. Jogar no nível Fácil")
+    print("2. Jogar no nível Médio")
+    print("3. Jogar no nível Difícil")
+    print("4. Sair")
+    print("="*40)
+    escolha = input("\nEscolha uma opção: ")
+
+    if escolha == "1":
+            print("\nNível Fácil selecionado.")
+            return 120
+    elif escolha == "2":
+            print("\nNível Médio selecionado.")
+            return 60
+    elif escolha == "3":
+            print("\nNível Difícil selecionado.")
+            return 40
+    else:
+            print("\nOpção inválida, padrão de Nível Médio selecionado")
+            return 60
+
+
+
 carrega_pontuacao()
 
 while True:
@@ -138,25 +164,7 @@ while True:
     escolha = int(input("\n Digite o n° correspondente: "))
     if escolha == 1:
         start = time.time()
-        print("Escolha De Dificuldade\n")
-        print("1. Jogar no nível Fácil")
-        print("2. Jogar no nível Médio")
-        print("3. Jogar no nível Difícil")
-        print("4. Sair")
-        print("="*40)
-        dificuldade = input("\nEscolha uma opção: ")
-        if dificuldade == "1":
-            print("\nNível Fácil selecionado.")
-            limiteTempo = 120
-        elif dificuldade == "2":
-            print("\nNível Médio selecionado.")
-            limiteTempo = 60
-        elif dificuldade == "3":
-            print("\nNível Difícil selecionado.")
-            limiteTempo = 40
-        else:
-            print("\nOpção inválida, padrão de Nível Médio selecionado")
-            limiteTempo = 60
+        limiteTempo = escolherDificuldade()
 
         nome = input("Nome do usuário: ")
         
