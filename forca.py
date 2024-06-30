@@ -74,6 +74,19 @@ bonequinho = [
 """
 ]
 
+def verificacao_vidas(vidas):
+    if vidas <= 0:
+        print("\nVish, suas vidas zeraram e você perdeu o jogo...")
+        return True
+
+def verificacao_vitoria():
+    if partesUpper == nova:
+        print("Você descobriu a palavra! parabéns!\n")
+        print("   ".join(nova))
+        return True
+    else:
+        return False
+
 def verificacao_acerto(digitado):
      for i in range(len(sorteada)):
         acertos = 0
@@ -162,6 +175,7 @@ def exibir_classificacao():
     print("Nome do Usuário............... Pontos... Tempo")
     for usuario in usuarios_ordenados:
         print(f"{usuario['nome']:30s} {usuario['pontos']:<8d} {usuario['tempo']:6.2f}s")
+
 
 carrega_pontuacao()
 
