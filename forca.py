@@ -80,9 +80,9 @@ def verificacao_vidas(vidas):
         return True
 
 def verificacao_vitoria():
-    if partesUpper == nova:
+    if partesUpper == partesAtual:
         print("Você descobriu a palavra! parabéns!\n")
-        print("   ".join(nova))
+        print("   ".join(partesAtual))
         return True
     else:
         return False
@@ -91,7 +91,7 @@ def verificacao_acerto(digitado):
      for i in range(len(sorteada)):
         acertos = 0
         if partesUpper[i] == digitado.upper():
-           nova[i] = digitado.upper()
+           partesAtual[i] = digitado.upper()
            acertos += 1
         if (i + 1) == len(sorteada) and acertos > 0:
            print("\nEi, você acertou uma(s) letra!\n")
@@ -189,7 +189,7 @@ def jogo(vidas):
             tempoAtual = time.time() - start
             bonequinhoAtual = bonequinho[vidas]
             print(bonequinhoAtual, end='')   
-            print(f"\n{' ' * 12}{'   '.join(nova)}\n") 
+            print(f"\n{' ' * 12}{'   '.join(partesAtual)}\n") 
 
             if verificacao_vidas(vidas):
                 grava_pontuacao(vidas, tempoAtual)
@@ -219,7 +219,7 @@ while True:
     importar_palavras("palavras.txt")
     sorteada = random.choice(palavras)
     partesSorteada = list(sorteada) 
-    nova = list('_' * len(sorteada))
+    partesAtual = list('_' * len(sorteada))
     partesUpper = [letra.upper() for letra in partesSorteada]
 
     escolha = int(input("\n Digite o n° correspondente: "))
