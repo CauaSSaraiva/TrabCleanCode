@@ -15,6 +15,9 @@ Não requerida.
 ```bash
 # development
 $ python forca.py
+
+# testes
+$ python -m unittest
 ```
 
 ## 🤝 Contribuídores
