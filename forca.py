@@ -149,7 +149,24 @@ def escolherDificuldade():
             print("\nOpção inválida, padrão de Nível Médio selecionado")
             return 60
 
+#Leonardo
+def exibir_classificacao():
+    if not registro:
+        print("\nNenhum registro encontrado.")
+        return
 
+    usuarios = []
+    for linha in registro:
+        partes = linha.split(";")
+        usuarios.append({"nome": partes[0], "pontos": int(partes[1]), "tempo": float(partes[2])})
+
+    usuarios_ordenados = sorted(usuarios, key=lambda x: (-x["pontos"], x["tempo"]))
+
+    print("\nRanking dos usuários")
+    print("-"*40)
+    print("Nome do Usuário............... Pontos... Tempo")
+    for usuario in usuarios_ordenados:
+        print(f"{usuario['nome']:30s} {usuario['pontos']:<8d} {usuario['tempo']:6.2f}s")
 
 carrega_pontuacao()
 
