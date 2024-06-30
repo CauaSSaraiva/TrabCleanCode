@@ -212,25 +212,25 @@ def jogo(vidas):
                 print(f"\nVocê perdeu 1 vida\n Total de vidas: {vidas}")
                     
 
-carrega_pontuacao()
+if __name__ == '__main__':
+    carrega_pontuacao()
+    while True:
+        exibir_menu()
+        importar_palavras("palavras.txt")
+        sorteada = random.choice(palavras)
+        partesSorteada = list(sorteada) 
+        partesAtual = list('_' * len(sorteada))
+        partesUpper = [letra.upper() for letra in partesSorteada]
 
-while True:
-    exibir_menu()
-    importar_palavras("palavras.txt")
-    sorteada = random.choice(palavras)
-    partesSorteada = list(sorteada) 
-    partesAtual = list('_' * len(sorteada))
-    partesUpper = [letra.upper() for letra in partesSorteada]
+        escolha = int(input("\n Digite o n° correspondente: "))
+        if escolha == 1:
+            start = time.time()
+            limiteTempo = escolherDificuldade()
 
-    escolha = int(input("\n Digite o n° correspondente: "))
-    if escolha == 1:
-        start = time.time()
-        limiteTempo = escolherDificuldade()
-
-        nome = input("Nome do usuário: ")
-        jogo(vidas)
-        
-    elif escolha == 2:
-        exibir_classificacao()
-    else:
-        break
+            nome = input("Nome do usuário: ")
+            jogo(vidas)
+            
+        elif escolha == 2:
+            exibir_classificacao()
+        else:
+            break
