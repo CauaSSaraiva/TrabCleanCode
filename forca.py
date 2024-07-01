@@ -193,11 +193,10 @@ def jogo(vidas):
 
             if verificacao_vidas(vidas):
                 grava_pontuacao(vidas, tempoAtual)
-                break
-            if tempoAtual >= limiteTempo:
+                break       
+            if verificacao_limiteTempo(tempoAtual):
                 print(f"Tempo esgotado! Você excedeu o limite de {limiteTempo} segundos.")
                 print(f"A palavra era '{sorteada}'.")
-            if verificacao_limiteTempo(tempoAtual):
                 grava_pontuacao(vidas, tempoAtual)
                 break
 
